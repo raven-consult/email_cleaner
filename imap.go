@@ -3,14 +3,16 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/emersion/go-imap/v2"
 )
 
 func main() {
-	imapServer := "xxxx:993"
-	username := "xxx"
-	password := "xxx"
+	imapServer := os.Getenv("IMAP_SERVER")
+	username := os.Getenv("IMAP_USERNAME")
+	password := os.Getenv("IMAP_PASSWORD")
+
 	c, err := getClient(username, password, imapServer)
 	if err != nil {
 		log.Fatalf("failed to dial IMAP server: %v", err)
